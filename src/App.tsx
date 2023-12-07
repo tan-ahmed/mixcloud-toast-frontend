@@ -6,7 +6,7 @@ const App = () => {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/live" element={<Profile />} />
+            <Route path="/live/:username" element={<Profile />} />
             {/* Catches all routes and redirects back to home */}
             <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

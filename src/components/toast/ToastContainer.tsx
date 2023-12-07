@@ -2,8 +2,7 @@
 import { useCallback, useEffect } from "react";
 import Toast from "./Toast";
 import blankDp from "../../assets/blank-dp.png";
-
-import { FIVE_SECONDS_MS, ToastProps } from "./consts";
+import { ANIMATION_DURATION, FIVE_SECONDS_MS, ToastProps } from "./shared";
 
 interface ToastContainerProps {
     allToasts: ToastProps[];
@@ -13,10 +12,15 @@ interface ToastContainerProps {
 const ToastContainer = ({ allToasts, setAllToasts }: ToastContainerProps) => {
     const deleteToast = useCallback(
         (id: number) => {
-            setAllToasts((prevList) => {
-                const updatedList = prevList.filter((e) => e.id !== id);
-                return updatedList;
-            });
+            const selectedToast = document.getElementById(`toast-${id}`);
+            if (selectedToast) selectedToast.classList.add("fade-out");
+
+            setTimeout(() => {
+                setAllToasts((prevList) => {
+                    const updatedList = prevList.filter((e) => e.id !== id);
+                    return updatedList;
+                });
+            }, ANIMATION_DURATION);
         },
         [setAllToasts]
     );
@@ -29,7 +33,7 @@ const ToastContainer = ({ allToasts, setAllToasts }: ToastContainerProps) => {
                     firstToast.classList.add("fade-out");
                     setTimeout(() => {
                         deleteToast(allToasts[0].id);
-                    }, 250);
+                    }, ANIMATION_DURATION);
                 }
             }
         }, FIVE_SECONDS_MS);

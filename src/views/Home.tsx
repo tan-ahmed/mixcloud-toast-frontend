@@ -3,7 +3,7 @@ import { useState } from "react";
 import Layout from "../components/layout/Layout";
 import useGetUserFollowing from "../hooks/useGetFollowing";
 import ToastContainer from "../components/toast/ToastContainer";
-import { ToastProps } from "../components/toast/consts";
+import { ToastProps } from "../components/toast/shared";
 
 const Home = () => {
     const { data, isLoading, error } = useGetUserFollowing("spartacus");

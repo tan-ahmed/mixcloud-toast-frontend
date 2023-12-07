@@ -2,8 +2,6 @@
 import React from "react";
 import close from "../../assets/close.svg";
 import live from "../../assets/live.svg";
-
-import "./Toast.css";
 import { truncateString } from "../../utils/utilts";
 
 interface ToastProps {
