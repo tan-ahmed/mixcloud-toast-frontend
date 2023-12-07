@@ -13,15 +13,6 @@ export interface ToastProps {
 }
 
 const Home = () => {
-    const [toasts, setToasts] = useState<
-        {
-            id: number;
-            title: string;
-            description: string;
-            picture: string;
-        }[]
-    >([]);
-
     const { data, isLoading, error } = useGetUserFollowing("spartacus");
 
     if (isLoading) {
@@ -32,23 +23,14 @@ const Home = () => {
         return <p>{error.message}</p>;
     }
 
-    const addToast = (title: string, description: string, picture: string) => {
-        const newToast = { id: Date.now(), title, description, picture };
-        setToasts((prevToasts) => [newToast, ...prevToasts.slice(0, 2)]);
-    };
-
-    const dismissToast = (id: number) => {
-        setToasts((prevToasts) => prevToasts.filter((t) => t.id !== id));
-    };
-
     const description = "Has gone live - watch now";
 
     return (
         <Layout>
             <div className="container space-y-5 my-6">
                 <h1 className="font-bold text-xl">Following</h1>
+                <ToastList />
 
-                <ToastList toasts={toasts} onDismiss={dismissToast} />
                 {/* <pre>{JSON.stringify(toasts, null, 2)}</pre> */}
                 {data &&
                     data.data.length > 0 &&

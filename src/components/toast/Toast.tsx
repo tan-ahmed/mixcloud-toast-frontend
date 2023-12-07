@@ -1,7 +1,6 @@
-import React, { useEffect, useCallback, useRef } from "react";
+import React, { useEffect } from "react";
 import close from "../../assets/close.svg";
 import live from "../../assets/live.svg";
-import blankDp from "../../assets/blank-dp.png";
 
 import "./Toast.css";
 
@@ -15,24 +14,22 @@ function truncateString(str: string, maxLength: number) {
 interface ToastProps {
     id: number;
     title: string;
-    description?: string;
     picture: string;
-    onClick: (id: number) => void;
+    onClose: (id: number) => void;
 }
 
-const Toast: React.FC<ToastProps> = ({ id, title, description = "", picture, onClick }) => {
-    const dismissToast = useCallback(() => {
-        onClick(id);
-    }, [id, onClick]);
+const Toast: React.FC<ToastProps> = ({ id, title, picture, onClose }) => {
+    const truncatedTitle = truncateString(title, 22);
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            dismissToast();
-        }, 3000);
+            onClose(id); // Automatically close the toast after a certain time
+        }, 5000);
 
-        return () => clearTimeout(timer);
-    }, [dismissToast]);
-    const truncatedTitle = truncateString(title, 10);
+        return () => {
+            clearTimeout(timer);
+        };
+    }, [id, onClose]);
 
     return (
         <div className="toast fade-in bg-white rounded shadow h-14 flex p-2 w-[350px] justify-between items-center mb-3">
@@ -42,7 +39,7 @@ const Toast: React.FC<ToastProps> = ({ id, title, description = "", picture, onC
                 </div>
                 <div>
                     <div className="text-gray-800 text-base leading-snug">{truncatedTitle}</div>
-                    {description && <div className="text-gray-500 text-sm leading-tight">{description}</div>}
+                    <div className="text-gray-500 text-sm leading-tight">Has gone live - watch now</div>
                 </div>
             </div>
 
@@ -50,7 +47,7 @@ const Toast: React.FC<ToastProps> = ({ id, title, description = "", picture, onC
                 <img src={live} alt="Live" />
             </div>
             <div className="flex items-center">
-                <button type="button" className="w-5 h-5" tabIndex={0} onClick={dismissToast}>
+                <button type="button" className="w-5 h-5" tabIndex={0} onClick={() => onClose(id)}>
                     <img src={close} alt="Close Icon" />
                 </button>
             </div>
