@@ -33,7 +33,7 @@ const ToastList = ({ allToasts, setAllToasts }: ToastListProps) => {
     }, [allToasts, deleteToast]);
 
     return (
-        <div>
+        <div className="toast-list">
             {allToasts.slice(0, 3).map((toast) => (
                 <Toast key={toast.id} id={toast.id} title={toast.title} picture={toast.picture || blankDp} onClose={() => deleteToast(toast.id)} />
             ))}

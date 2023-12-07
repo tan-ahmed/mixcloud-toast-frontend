@@ -14,15 +14,3 @@ body {
     height: 100%;
     background-color: #fff;
 }
-
-@keyframes toast-in-right {
-    from {
-        @apply translate-x-full;
-    }
-    to {
-        @apply translate-x-0;
-    }
-}
-.buttom-right {
-    @apply animate-[toast-in-right_0.7s];
-}
