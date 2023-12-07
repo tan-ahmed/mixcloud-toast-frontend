@@ -1,15 +1,16 @@
-// ToastList.tsx
+// ToastContainer.tsx
 import { useCallback, useEffect } from "react";
 import Toast from "./Toast";
 import blankDp from "../../assets/blank-dp.png";
-import { ToastProps } from "../../views/Home";
 
-interface ToastListProps {
+import { FIVE_SECONDS_MS, ToastProps } from "./consts";
+
+interface ToastContainerProps {
     allToasts: ToastProps[];
     setAllToasts: React.Dispatch<React.SetStateAction<ToastProps[]>>;
 }
 
-const ToastList = ({ allToasts, setAllToasts }: ToastListProps) => {
+const ToastContainer = ({ allToasts, setAllToasts }: ToastContainerProps) => {
     const deleteToast = useCallback(
         (id: number) => {
             setAllToasts((prevList) => {
@@ -25,7 +26,7 @@ const ToastList = ({ allToasts, setAllToasts }: ToastListProps) => {
             if (allToasts.length) {
                 deleteToast(allToasts[0].id);
             }
-        }, 5000);
+        }, FIVE_SECONDS_MS);
 
         return () => {
             clearInterval(interval);
@@ -41,4 +42,4 @@ const ToastList = ({ allToasts, setAllToasts }: ToastListProps) => {
     );
 };
 
-export default ToastList;
+export default ToastContainer;

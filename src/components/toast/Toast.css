@@ -1,6 +1,11 @@
 /* Toast.css */
+
 .toast {
     animation: fade-in 250ms ease-in-out;
+}
+
+.stacked-toast {
+    animation: slide-up 250ms ease-in-out forwards;
 }
 
 @keyframes fade-in {
@@ -11,5 +16,14 @@
     100% {
         opacity: 1;
         transform: translateY(0);
+    }
+}
+
+@keyframes slide-up {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-40px); /* Adjust the value based on your design */
     }
 }

@@ -1,15 +1,9 @@
 // Home.tsx
 import { useState } from "react";
 import Layout from "../components/layout/Layout";
-
 import useGetUserFollowing from "../hooks/useGetFollowing";
-import ToastList from "../components/toast/ToastList";
-
-export interface ToastProps {
-    id: number;
-    title: string;
-    picture?: string;
-}
+import ToastContainer from "../components/toast/ToastContainer";
+import { ToastProps } from "../components/toast/consts";
 
 const Home = () => {
     const { data, isLoading, error } = useGetUserFollowing("spartacus");
@@ -38,7 +32,7 @@ const Home = () => {
         <Layout>
             <div className="container space-y-5 my-6">
                 <h1 className="font-bold text-xl">Following</h1>
-                <ToastList allToasts={allToasts} setAllToasts={setAllToasts} />
+                <ToastContainer allToasts={allToasts} setAllToasts={setAllToasts} />
 
                 {data &&
                     data.data.length > 0 &&
