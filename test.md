@@ -33,7 +33,7 @@ https://www.figma.com/file/eys6eMlpiSCn2vo6Y6TsS9/Growl-Notifications?type=desig
 
 -   When the user loads the page, the notifications should load without any further user interaction;
 -   When a notification is shown, it should be displayed for a maximum of 5 seconds when there is no user interaction;
--   When a notification is shown, when the user clicks the dismiss icon then it should be dismissed immediately;
+-   When a notification is shown, when the user clicks the dismiss icon then it should be dismissed immediately; - done
 -   When a notification is showing, it should fade in for `250ms` to 100% opacity and a `16px` offset from the top;
 -   When a notification is hiding, fade out for `250ms` to 0% opacity and back to the original position;
 -   When multiple notifications exist, they should stack, with newest one displaying at the the top of the list;

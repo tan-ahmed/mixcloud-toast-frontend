@@ -3,7 +3,7 @@ import Layout from "../components/layout/Layout";
 
 import useGetUserFollowing from "../hooks/useGetFollowing";
 import Button from "../components/button/Button";
-import Toast from "../components/toastlist/Toast";
+import ToastContainer from "../components/toast-container/ToastContainer";
 
 interface ToastProperties {
     id: number;
@@ -13,15 +13,15 @@ interface ToastProperties {
 }
 
 const Home = () => {
-    // const { data, isLoading, error } = useGetUserFollowing("spartacus");
+    const { data, isLoading, error } = useGetUserFollowing("spartacus");
 
-    // if (isLoading) {
-    //     return <p>Loading...</p>;
-    // }
+    if (isLoading) {
+        return <p>Loading...</p>;
+    }
 
-    // if (error) {
-    //     return <p>{error.message}</p>;
-    // }
+    if (error) {
+        return <p>{error.message}</p>;
+    }
 
     const [list, setList] = useState<ToastProperties[]>([]); // Set the initial state with the type
 
@@ -59,23 +59,19 @@ const Home = () => {
 
                 <Button handleClick={() => showToast("success")}>Success</Button>
                 <Button handleClick={() => showToast("danger")}>Danger</Button>
-                <Button handleClick={() => showToast("info")}>Info</Button>
-                <Button handleClick={() => showToast("warning")}>Warning</Button>
 
-                <Toast toastlist={list} position="buttom-right" setList={setList} />
+                <ToastContainer toastlist={list} setList={setList} />
 
-                {/* {data?.data.map((user) => (
-                    <MyToast
-                        key={user.key}
-                        picture={user.pictures.medium_mobile}
-                        username={user.username}
-                        message="Has gone live - watch now!"
-                        isLive={true}
-                        onClose={function (): void {
-                            throw new Error("Function not implemented.");
-                        }}
-                    />
-                ))} */}
+                {data &&
+                    data.data.length > 0 &&
+                    data?.data.map((user) => (
+                        <button key={user.key} onClick={() => showToast("success")} type="button">
+                            <div className="flex items-center space-x-2">
+                                <img className="w-10 h-10 rounded-full" src={user.pictures.medium_mobile} alt={user.username} loading="lazy" />
+                                <div className="text-gray-800 text-base leading-snug">{user.username}</div>
+                            </div>
+                        </button>
+                    ))}
             </div>
         </Layout>
     );
