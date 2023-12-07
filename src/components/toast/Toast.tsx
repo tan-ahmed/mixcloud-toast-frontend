@@ -21,16 +21,6 @@ interface ToastProps {
 const Toast: React.FC<ToastProps> = ({ id, title, picture, onClose }) => {
     const truncatedTitle = truncateString(title, 22);
 
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            onClose(id); // Automatically close the toast after a certain time
-        }, 5000);
-
-        return () => {
-            clearTimeout(timer);
-        };
-    }, [id, onClose]);
-
     return (
         <div className="toast fade-in bg-white rounded shadow h-14 flex p-2 w-[350px] justify-between items-center mb-3">
             <div className="flex flex-grow">

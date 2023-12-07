@@ -25,16 +25,18 @@ const ToastList = ({ allToasts, setAllToasts }: ToastListProps) => {
             if (allToasts.length) {
                 deleteToast(allToasts[0].id);
             }
-        }, 3000);
+        }, 5000);
 
         return () => {
             clearInterval(interval);
         };
     }, [allToasts, deleteToast]);
 
+    console.log(allToasts);
+
     return (
         <div>
-            {allToasts.map((toast) => (
+            {allToasts.slice(0, 3).map((toast) => (
                 <Toast key={toast.id} id={toast.id} title={toast.title} picture={toast.picture || blankDp} onClose={() => deleteToast(toast.id)} />
             ))}
         </div>
