@@ -24,7 +24,13 @@ const ToastContainer = ({ allToasts, setAllToasts }: ToastContainerProps) => {
     useEffect(() => {
         const interval = setInterval(() => {
             if (allToasts.length) {
-                deleteToast(allToasts[0].id);
+                const firstToast = document.getElementById(`toast-${allToasts[0].id}`);
+                if (firstToast) {
+                    firstToast.classList.add("fade-out");
+                    setTimeout(() => {
+                        deleteToast(allToasts[0].id);
+                    }, 250);
+                }
             }
         }, FIVE_SECONDS_MS);
 
@@ -34,7 +40,7 @@ const ToastContainer = ({ allToasts, setAllToasts }: ToastContainerProps) => {
     }, [allToasts, deleteToast]);
 
     return (
-        <div className="fixed top-4 right-3 z-50">
+        <div className="fixed top-4 right-3 z-50 transition-all">
             {allToasts.slice(0, 3).map((toast) => (
                 <Toast key={toast.id} id={toast.id} title={toast.title} picture={toast.picture || blankDp} onClose={() => deleteToast(toast.id)} />
             ))}

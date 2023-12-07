@@ -1,4 +1,4 @@
-export const FIVE_SECONDS_MS = 5000;
+export const FIVE_SECONDS_MS = 2000;
 
 export interface ToastProps {
     id: number;

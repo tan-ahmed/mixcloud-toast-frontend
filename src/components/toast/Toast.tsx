@@ -17,14 +17,14 @@ const Toast: React.FC<ToastProps> = ({ id, title, picture, onClose }) => {
     const truncatedTitle = truncateString(title, 22);
 
     return (
-        <div className="toast bg-white rounded shadow h-14 flex p-2 w-[350px] justify-between items-center mb-3">
+        <div id={`toast-${id}`} className="toast bg-white rounded shadow h-14 flex p-2 w-[350px] justify-between items-center mb-3">
             <div className="flex flex-grow">
                 <div className="rounded h-auto w-10 mr-3">
                     <img className="rounded-full" src={picture} alt={title} loading="lazy" />
                 </div>
                 <div>
-                    <div className="text-gray-800 text-base leading-snug">{truncatedTitle}</div>
-                    <div className="text-gray-500 text-sm leading-tight">has gone live - watch now</div>
+                    <p className="text-gray-800 text-base leading-snug">{truncatedTitle}</p>
+                    <p className="text-gray-500 text-sm leading-tight">has gone live - watch now</p>
                 </div>
             </div>
 
