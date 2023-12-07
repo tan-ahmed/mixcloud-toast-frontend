@@ -32,8 +32,6 @@ const ToastList = ({ allToasts, setAllToasts }: ToastListProps) => {
         };
     }, [allToasts, deleteToast]);
 
-    console.log(allToasts);
-
     return (
         <div>
             {allToasts.slice(0, 3).map((toast) => (
