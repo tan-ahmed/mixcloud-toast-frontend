@@ -8,15 +8,9 @@ const Header = () => {
 
             <div className="w-full flex-grow lg:flex lg:items-center lg:w-auto hidden">
                 <div className="text-sm lg:flex-grow">
-                    <a href="#" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-                        Docs
-                    </a>
-                    <a href="#" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
-                        Examples
-                    </a>
-                    <a href="#" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white">
-                        Blog
-                    </a>
+                    <button type="button" className="block mt-4 lg:inline-block lg:mt-0 text-white hover:text-white mr-4">
+                        Sample link
+                    </button>
                 </div>
             </div>
         </nav>
