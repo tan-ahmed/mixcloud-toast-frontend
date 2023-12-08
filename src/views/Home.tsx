@@ -6,7 +6,8 @@ import ToastContainer from "../components/toast/ToastContainer";
 import { ToastProps } from "../components/toast/shared";
 
 const Home = () => {
-    const { data, isLoading, error } = useGetUserFollowing("spartacus");
+    const username = "spartacus";
+    const { data, isLoading, error } = useGetUserFollowing(username);
     const [allToasts, setAllToasts] = useState<ToastProps[]>([]);
 
     if (isLoading) {
@@ -18,7 +19,7 @@ const Home = () => {
     }
 
     const addToast = ({ title, picture }: Omit<ToastProps, "id">) => {
-        const newId = Date.now(); // Use a unique identifier, for example, timestamp
+        const newId = Date.now();
         const newToast = {
             id: newId,
             title,
@@ -31,19 +32,21 @@ const Home = () => {
     return (
         <Layout>
             <div className="container space-y-5 my-6">
-                <h1 className="font-bold text-xl">Following</h1>
+                <h1 className="font-bold text-xl">{username}</h1>
                 <ToastContainer allToasts={allToasts} setAllToasts={setAllToasts} />
 
-                {data &&
-                    data.data.length > 0 &&
-                    data?.data.map((user) => (
-                        <button type="button" key={user.key} onClick={() => addToast({ title: user.username, picture: user.pictures.medium_mobile })}>
-                            <div className="flex items-center space-x-2">
-                                <img className="w-10 h-10 rounded-full" src={user.pictures.medium_mobile} alt={user.username} loading="lazy" />
-                                <div className="text-gray-800 text-base leading-snug">{user.username}</div>
-                            </div>
-                        </button>
-                    ))}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
+                    {data &&
+                        data.data.length > 0 &&
+                        data?.data.map((user) => (
+                            <button type="button" key={user.key} onClick={() => addToast({ title: user.username, picture: user.pictures.medium_mobile })} className="p-1 rounded shadow">
+                                <div className="flex items-center space-x-2">
+                                    <img className="w-10 h-10 rounded-full" src={user.pictures.medium_mobile} alt={user.username} loading="lazy" />
+                                    <div className="text-gray-800 text-base leading-snug">Open toast for {user.username}</div>
+                                </div>
+                            </button>
+                        ))}
+                </div>
             </div>
         </Layout>
     );
