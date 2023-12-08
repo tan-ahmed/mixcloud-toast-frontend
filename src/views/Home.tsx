@@ -7,7 +7,7 @@ import { useToast } from "../hooks/useToast";
 const Home = () => {
     const username = "spartacus";
     const { data, isLoading, error } = useGetUserFollowing(username);
-    const { addToast } = useToast();
+    const { addToast, allToasts } = useToast();
 
     if (isLoading) {
         return <p>Loading...</p>;
@@ -17,10 +17,18 @@ const Home = () => {
         return <p>{error.message}</p>;
     }
 
+    console.log(allToasts, "allToasts HOME");
+
     return (
         <Layout>
             <div className="container space-y-5 my-6">
                 <h1 className="font-bold text-xl">{username}</h1>
+
+                <button type="button" onClick={() => addToast({ title: "tan" })} className="p-1 rounded shadow">
+                    <div className="flex items-center space-x-2">
+                        <div className="text-gray-800 text-base leading-snug">Open toast for tan</div>
+                    </div>
+                </button>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
                     {data &&

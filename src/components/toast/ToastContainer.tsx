@@ -1,49 +1,19 @@
 // ToastContainer.tsx
-import { useCallback, useEffect } from "react";
 import Toast from "./Toast";
 import blankDp from "../../assets/blank-dp.png";
-import { ANIMATION_DURATION, FIVE_SECONDS_MS } from "./shared";
 import { useToast } from "../../hooks/useToast";
 
 const ToastContainer = () => {
-    const { allToasts, setAllToasts } = useToast();
-    console.log(allToasts, "allToasts");
-
-    const deleteToast = useCallback(
-        (id: number) => {
-            const selectedToast = document.getElementById(`toast-${id}`);
-            if (selectedToast) selectedToast.classList.add("fade-out");
-
-            setTimeout(() => {
-                setAllToasts((prevList) => {
-                    const updatedList = prevList.filter((e) => e.id !== id);
-                    return updatedList;
-                });
-            }, ANIMATION_DURATION);
-        },
-        [setAllToasts]
-    );
-
-    useEffect(() => {
-        const interval = setInterval(() => {
-            if (allToasts.length) {
-                const firstToast = document.getElementById(`toast-${allToasts[0].id}`);
-                if (firstToast) {
-                    firstToast.classList.add("fade-out");
-                    setTimeout(() => {
-                        deleteToast(allToasts[0].id);
-                    }, ANIMATION_DURATION);
-                }
-            }
-        }, FIVE_SECONDS_MS);
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, [allToasts, deleteToast]);
+    const { allToasts, addToast, deleteToast } = useToast();
+    console.log(allToasts, "allToasts ToastContainer");
 
     return (
         <div className="fixed top-4 right-3 z-50 transition-all">
+            <button type="button" onClick={() => addToast({ title: "tan" })} className="p-1 rounded shadow">
+                <div className="flex items-center space-x-2">
+                    <div className="text-gray-800 text-base leading-snug">Open toast for test</div>
+                </div>
+            </button>
             {allToasts.slice(0, 3).map((toast) => (
                 <Toast key={toast.id} id={toast.id} title={toast.title} picture={toast.picture || blankDp} onClose={() => deleteToast(toast.id)} />
             ))}
