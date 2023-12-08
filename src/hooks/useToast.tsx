@@ -1,9 +1,10 @@
 // useToast.tsx
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect } from "react";
 import { ANIMATION_DURATION, FIVE_SECONDS_MS, ToastProps } from "../components/toast/shared";
+import { useToastContext } from "../store/ToastContext";
 
 export const useToast = () => {
-    const [allToasts, setAllToasts] = useState<ToastProps[]>([]);
+    const { allToasts, setAllToasts } = useToastContext();
 
     const addToast = ({ title, picture }: Omit<ToastProps, "id">) => {
         const newId = Date.now();
