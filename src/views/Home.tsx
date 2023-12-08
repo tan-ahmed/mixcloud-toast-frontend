@@ -29,7 +29,7 @@ const Home = () => {
                     </div>
                 </button>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
+                {/* <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
                     {data &&
                         data.data.length > 0 &&
                         data?.data.map((user) => (
@@ -40,7 +40,7 @@ const Home = () => {
                                 </div>
                             </button>
                         ))}
-                </div>
+                </div> */}
             </div>
         </Layout>
     );
