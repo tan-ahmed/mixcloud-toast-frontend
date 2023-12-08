@@ -40,10 +40,9 @@ body {
         transform: translateY(0);
     }
     50% {
-        opacity: 0;
-        transform: translateY(-16px);
     }
     100% {
+        transform: translateY(-16px);
         opacity: 0;
     }
 }
