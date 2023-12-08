@@ -4,7 +4,7 @@ import { FollowingResponse } from "../types/apiResponses";
 import { TWO_MINUTES } from "../components/toast/shared";
 
 const useGetUserFollowing = (username: string) => {
-    const { isLoading, data, isFetching, error } = useQuery<FollowingResponse>({
+    const { isLoading, data, isFetching, error, isSuccess } = useQuery<FollowingResponse>({
         queryKey: ["userFollowing", username],
         staleTime: TWO_MINUTES,
         refetchInterval: TWO_MINUTES,
@@ -14,6 +14,6 @@ const useGetUserFollowing = (username: string) => {
             return response;
         },
     });
-    return { isLoading, data, isFetching, error };
+    return { isLoading, data, isFetching, error, isSuccess };
 };
 export default useGetUserFollowing;

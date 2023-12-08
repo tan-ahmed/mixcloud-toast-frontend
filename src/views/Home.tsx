@@ -6,7 +6,7 @@ import { useToast } from "../hooks/useToast";
 
 const Home = () => {
     const username = "spartacus";
-    const { data, isLoading, error } = useGetUserFollowing(username);
+    const { data, isLoading, error, isSuccess } = useGetUserFollowing(username);
     const { addToast } = useToast();
 
     if (isLoading) {
@@ -20,11 +20,10 @@ const Home = () => {
     return (
         <Layout>
             <div className="container space-y-5 my-6">
+                {isLoading ? <p className="text-green-500">Success</p> : "error"}
                 <h1 className="font-bold text-xl">{username}</h1>
-
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
-                    {data &&
-                        data.data.length > 0 &&
+                    {isSuccess &&
                         data?.data.map((user) => (
                             <button type="button" key={user.key} onClick={() => addToast({ title: user.username, picture: user.pictures.medium_mobile })} className="p-1 rounded border">
                                 <div className="flex items-center space-x-2">
