@@ -9,6 +9,21 @@ const Home = () => {
     const { data, isLoading, error, isSuccess } = useGetUserFollowing(username);
     const { addToast } = useToast();
 
+    // I didn't quite understand this, maybe the code below does this?
+    // When the user loads the page, the notifications should load without any further user interaction
+
+    // useEffect(() => {
+    //     if (isSuccess && data && data.data.length > 0) {
+    //         const delay = 1000; // Delay in milliseconds between each toast
+    //         for (let i = 0; i < data.data.length; i++) {
+    //             setTimeout(() => {
+    //                 const userData = data.data[i];
+    //                 addToast({ title: userData.username, picture: userData.pictures.medium_mobile });
+    //             }, i * delay);
+    //         }
+    //     }
+    // }, [isSuccess]);
+
     if (isLoading) {
         return <p>Loading...</p>;
     }
@@ -20,9 +35,8 @@ const Home = () => {
     return (
         <Layout>
             <div className="container space-y-5 my-6">
-                {isLoading ? <p className="text-green-500">Success</p> : "error"}
-                <h1 className="font-bold text-xl">{username}</h1>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
+                <h1 className="font-bold text-xl">Open a toast by clicking the buttons below</h1>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
                     {isSuccess &&
                         data?.data.map((user) => (
                             <button type="button" key={user.key} onClick={() => addToast({ title: user.username, picture: user.pictures.medium_mobile })} className="p-1 rounded border">
