@@ -1,17 +1,15 @@
 // Toast.tsx
-import React from "react";
+
 import close from "../../assets/close.svg";
 import live from "../../assets/live.svg";
 import { truncateString } from "../../utils/utilts";
+import { ToastProps } from "./shared";
 
-interface ToastProps {
-    id: number;
-    title: string;
-    picture: string;
+interface ToastUI extends ToastProps {
     onClose: (id: number) => void;
 }
 
-const Toast: React.FC<ToastProps> = ({ id, title, picture, onClose }) => {
+const Toast = ({ id, title, picture, onClose }: ToastUI) => {
     const truncatedTitle = truncateString(title, 22);
 
     return (

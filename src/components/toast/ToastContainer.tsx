@@ -5,7 +5,6 @@ import { useToast } from "../../hooks/useToast";
 
 const ToastContainer = () => {
     const { allToasts, addToast, deleteToast } = useToast();
-    console.log(allToasts, "ToastContainer allToasts");
 
     return (
         <div className="fixed top-4 right-3 z-50 transition-all">
