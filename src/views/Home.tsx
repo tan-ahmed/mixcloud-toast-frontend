@@ -8,6 +8,7 @@ const Home = () => {
     const username = "spartacus";
     const { data, isLoading, error } = useGetUserFollowing(username);
     const { addToast, allToasts } = useToast();
+    console.log(allToasts, "home allToasts");
 
     if (isLoading) {
         return <p>Loading...</p>;
@@ -16,8 +17,6 @@ const Home = () => {
     if (error) {
         return <p>{error.message}</p>;
     }
-
-    console.log(allToasts, "allToasts HOME");
 
     return (
         <Layout>

@@ -6,7 +6,6 @@ export const useToast = () => {
     const [allToasts, setAllToasts] = useState<ToastProps[]>([]);
 
     const addToast = ({ title, picture }: Omit<ToastProps, "id">) => {
-        console.log(title, picture);
         const newId = Date.now();
         const newToast = {
             id: newId,
