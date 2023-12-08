@@ -1,4 +1,5 @@
 import Header from "../header/Header";
+import ToastContainer from "../toast/ToastContainer";
 
 type Props = {
     children: React.ReactNode;
@@ -9,6 +10,7 @@ const Layout = ({ children }: Props) => {
         <div className="w-full">
             <Header />
             {children}
+            <ToastContainer />
         </div>
     );
 };

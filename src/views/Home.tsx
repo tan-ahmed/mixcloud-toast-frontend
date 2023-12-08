@@ -1,14 +1,13 @@
 // Home.tsx
-import { useState } from "react";
 import Layout from "../components/layout/Layout";
+
 import useGetUserFollowing from "../hooks/useGetFollowing";
-import ToastContainer from "../components/toast/ToastContainer";
-import { ToastProps } from "../components/toast/shared";
+import { useToast } from "../hooks/useToast";
 
 const Home = () => {
     const username = "spartacus";
     const { data, isLoading, error } = useGetUserFollowing(username);
-    const [allToasts, setAllToasts] = useState<ToastProps[]>([]);
+    const { addToast } = useToast();
 
     if (isLoading) {
         return <p>Loading...</p>;
@@ -18,22 +17,10 @@ const Home = () => {
         return <p>{error.message}</p>;
     }
 
-    const addToast = ({ title, picture }: Omit<ToastProps, "id">) => {
-        const newId = Date.now();
-        const newToast = {
-            id: newId,
-            title,
-            picture,
-        };
-
-        setAllToasts((prevList) => [...prevList, newToast]);
-    };
-
     return (
         <Layout>
             <div className="container space-y-5 my-6">
                 <h1 className="font-bold text-xl">{username}</h1>
-                <ToastContainer allToasts={allToasts} setAllToasts={setAllToasts} />
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 xl:grid-cols-3">
                     {data &&

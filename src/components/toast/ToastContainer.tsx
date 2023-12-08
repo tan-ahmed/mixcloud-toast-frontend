@@ -2,14 +2,13 @@
 import { useCallback, useEffect } from "react";
 import Toast from "./Toast";
 import blankDp from "../../assets/blank-dp.png";
-import { ANIMATION_DURATION, FIVE_SECONDS_MS, ToastProps } from "./shared";
+import { ANIMATION_DURATION, FIVE_SECONDS_MS } from "./shared";
+import { useToast } from "../../hooks/useToast";
 
-interface ToastContainerProps {
-    allToasts: ToastProps[];
-    setAllToasts: React.Dispatch<React.SetStateAction<ToastProps[]>>;
-}
+const ToastContainer = () => {
+    const { allToasts, setAllToasts } = useToast();
+    console.log(allToasts, "allToasts");
 
-const ToastContainer = ({ allToasts, setAllToasts }: ToastContainerProps) => {
     const deleteToast = useCallback(
         (id: number) => {
             const selectedToast = document.getElementById(`toast-${id}`);
