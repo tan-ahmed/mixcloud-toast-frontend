@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import Toast from "./Toast";
 import blankDp from "../../assets/blank-dp.png";
 import { useToast } from "../../hooks/useToast";
+import { ANIMATION_DURATION } from "./shared";
 
 const TOAST_HEIGHT = 16;
 
@@ -14,7 +15,7 @@ const ToastContainer = () => {
     const toastVariants = {
         hidden: { opacity: 0, y: TOAST_HEIGHT },
         visible: { opacity: 1, y: 0 },
-        exit: { opacity: 0, y: -TOAST_HEIGHT * 2, transition: { duration: 0.25 } },
+        exit: { opacity: 0, y: -TOAST_HEIGHT * 2, transition: { duration: ANIMATION_DURATION / 1000 } },
     };
 
     const handleToastClick = (id: number) => {
@@ -22,7 +23,7 @@ const ToastContainer = () => {
         setTimeout(() => {
             deleteToast(id);
             setClickedToast(null);
-        }, 250);
+        }, ANIMATION_DURATION);
     };
 
     return (
