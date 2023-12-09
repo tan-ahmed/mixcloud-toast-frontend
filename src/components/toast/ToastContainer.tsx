@@ -19,7 +19,6 @@ const ToastContainer = () => {
 
     const handleToastClick = (id: number) => {
         setClickedToast(id);
-        // Optionally, you can delay the actual deletion if you want to see the exit animation
         setTimeout(() => {
             deleteToast(id);
             setClickedToast(null);
