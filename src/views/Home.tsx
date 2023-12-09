@@ -1,5 +1,4 @@
 // Home.tsx
-import { motion } from "framer-motion";
 import Layout from "../components/layout/Layout";
 
 import useGetUserFollowing from "../hooks/useGetFollowing";
