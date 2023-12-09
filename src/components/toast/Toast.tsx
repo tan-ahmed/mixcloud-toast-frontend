@@ -14,7 +14,7 @@ const Toast = ({ id, title, picture, onClose }: ToastUI) => {
     const toastId = `toast-${id}`;
 
     return (
-        <div id={toastId} className="fade-in bg-white rounded shadow h-14 flex p-2 w-[350px] justify-between items-center mb-3">
+        <div id={toastId} className="bg-white rounded shadow h-14 flex p-2 w-[350px] justify-between items-center mb-3">
             <div className="flex flex-grow">
                 <div className="rounded h-auto w-10 mr-3">
                     <img className="rounded-full" src={picture} alt={title} loading="lazy" />
