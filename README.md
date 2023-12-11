@@ -13,11 +13,11 @@ It will launch on `http://localhost:5173/`
 
 ##### Main files to review
 ###### Toast UI
--- /src/components/toast/Toast.tsx
--- /src/components/toast/ToastContainer.tsx
+- /src/components/toast/Toast.tsx
+- /src/components/toast/ToastContainer.tsx
 ###### Hooks
--- src/hooks/useToast.tsx
--- src/hooksuseGetFollowing.tsx
+- src/hooks/useToast.tsx
+- src/hooksuseGetFollowing.tsx
 ###### React Context
--- src/store/ToastContext.tsx
+- src/store/ToastContext.tsx
 
