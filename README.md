@@ -5,10 +5,6 @@ then
 `yarn dev`
 It will launch on `http://localhost:5173/`
 
-##### Login details are:
-user: test@gmail.com
-pass: 123
-
 ##### Frontend
 - React & Typescript
 - ReactQuery for server state
